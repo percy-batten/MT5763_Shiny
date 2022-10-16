@@ -1,0 +1,27 @@
+---
+title: "Shiny App project"
+author: "Lanark"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+This is the document intended to be used for the Shiny app task as
+instructed by the Group project Assignment. 
+Please be aware teammates working on the same lines of code to avoid conflicts. 
+Please pull before starting to work on a section. 
+Please save, commmit and push after finshing work. 
+
+Task 1 Shiny app 
+```{r}
+# Task 1 Shiny app code Section. 
+
+
+
+
+
+
+
+
+```
+
+
