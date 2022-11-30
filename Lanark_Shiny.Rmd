@@ -11,17 +11,76 @@ Please be aware teammates working on the same lines of code to avoid conflicts.
 Please pull before starting to work on a section. 
 Please save, commmit and push after finshing work. 
 
+```{r}
+library(shiny)
+library(shinydashboard)
+library(shinydashboardPlus)
+library(shinyWidgets)
+library(shinythemes)
+library(tidyquant)
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(DT)
+library(dashboardthemes)
+```
+
+
 Task 1 Shiny app 
 ```{r}
-# Task 1 Shiny app code Section. 
+stock_data <- function(ticker, date_beg, date_end) {
+  data <- getSymbols(ticker, 
+                   from = date_beg,
+                   to = date_end,
+                   warnings = FALSE,
+                   auto.assign = FALSE,
+                   src = 'yahoo', 
+                   periodicity = "daily"
+                   )
+  
+}
 
+  # Load in Stock tickers
+  NYSE <- read.delim("data/NYSE.txt", stringsAsFactors = FALSE)
+  NASDAQ <- read.delim("data/NASDAQ.txt", stringsAsFactors = FALSE)
+  LSE <- read.delim("data/LSE.txt", stringsAsFactors = FALSE)
+  
+  # Combine into one list
+  tickers <- rbind(NASDAQ, NYSE, LSE)
+  
+  # Remove duplicants
+  tickers <- distinct(tickers)
+  
+  # Create new nice column for choices
+  tickers$options = paste0(tickers$Symbol, "-", tickers$Description)
+me <- stock_data("AAPL", "2021-01-01", "2022-01-01")
 
+#fake <- tq_get("AAPL", get = "key.stats", from = "2021-01-01", to = "2022-01-01")
+#tq_get
 
+#plot_ly(data = fake, x = fake$date , type = "candlestick", open = fake$open , close = fake$close, high = fake$high, low = fake$low)
 
-
-
-
+shinyApp(ui,server)
 
 ```
+
+Learn to loop through prices and generate a bunch of data sets and graphs
+Maybe create tab that lets you make pie chart of market caps
+Look into tables for app
+
+Could make a daily move price charts, with real-time price changes
+then have 15 minute refreshing data
+
+Create a tab to compare selected stock returns
+select 6 initial stocks to display
+make data refresh every hour
+add refresh button
+create a tab that compares selected stock market caps, pie chart
+Look into how to lay out plots
+Could do losers and gainers, boxes of who up last month and who down
+
+Maybe create a thing that lets you create optimal portfolio
+
+
 
 
